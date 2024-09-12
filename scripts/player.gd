@@ -4,7 +4,7 @@ extends CharacterBody3D
 
 @export var camera: Camera3D
 
-const SPEED: float = 5.0
+const SPEED: float = 50
 const JUMP_VELOCITY: float = 4.5
 const MOUNSE_SENS: float = 0.001
 
