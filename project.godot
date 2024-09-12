@@ -18,7 +18,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GlobalSteam="*res://scripts/steam.gd"
+SteamAPI="*res://scripts/steam.gd"
+DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
+Discord="*res://scripts/discord.gd"
 
 [debug]
 
@@ -31,7 +33,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/smoothing/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg")
+enabled=PackedStringArray("res://addons/discord-rpc-gd/plugin.cfg", "res://addons/smoothing/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg")
 
 [input]
 
