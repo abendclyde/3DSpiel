@@ -1,0 +1,122 @@
+[gd_scene load_steps=17 format=3 uid="uid://b01mdt7cyu2w"]
+
+[ext_resource type="PackedScene" uid="uid://bvl37wkplf4v4" path="res://scenes/player.tscn" id="2_xteyq"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="3_28ygg"]
+[ext_resource type="Script" path="res://addons/smoothing/smoothing.gd" id="3_yvrd5"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_detail_layer.gd" id="4_34k7t"]
+[ext_resource type="Resource" path="res://terrain/data.hterrain" id="4_jh3av"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="4_l5jvf"]
+[ext_resource type="Texture2D" uid="uid://m2k5arqndhkd" path="res://assets/sprite_0052.png" id="5_4n0wn"]
+[ext_resource type="Texture2D" uid="uid://6jmdwj3vn6m0" path="res://addons/zylann.hterrain/tools/icons/icon_detail_layer_node.svg" id="6_6vfc1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vjxys"]
+
+[sub_resource type="Sky" id="Sky_xx4vm"]
+sky_material = SubResource("ProceduralSkyMaterial_vjxys")
+
+[sub_resource type="Environment" id="Environment_676w3"]
+background_mode = 2
+sky = SubResource("Sky_xx4vm")
+tonemap_mode = 3
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+sdfgi_enabled = true
+
+[sub_resource type="Resource" id="Resource_4xevm"]
+script = ExtResource("4_l5jvf")
+mode = 0
+textures = [[], []]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_uhbdq"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vp7as"]
+size = Vector3(50, 1, 50)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ktquf"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_eb2f5"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="World" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_676w3")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.642788, 0.541675, -0.541675, 0, 0.707106, 0.707106, 0.766044, -0.454519, 0.454519, 0, 0, 0)
+shadow_enabled = true
+
+[node name="HTerrain" type="Node3D" parent="."]
+script = ExtResource("3_28ygg")
+ambient_wind = 0.2
+centered = true
+_terrain_data = ExtResource("4_jh3av")
+chunk_size = 32
+collision_enabled = true
+collision_layer = 2
+collision_mask = 7
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource("Resource_4xevm")
+render_layers = 1
+cast_shadow = 1
+shader_params/u_ground_uv_scale = 20
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = null
+shader_params/u_tile_reduction = null
+
+[node name="HTerrainDetailLayer" type="Node3D" parent="HTerrain"]
+script = ExtResource("4_34k7t")
+texture = ExtResource("5_4n0wn")
+shader_params/u_globalmap_tint_bottom = null
+shader_params/u_globalmap_tint_top = 0.0
+shader_params/u_bottom_ao = null
+shader_params/u_instance_scale = null
+shader_params/u_roughness = 0.0
+metadata/_editor_icon = ExtResource("6_6vfc1")
+
+[node name="Ground" type="StaticBody3D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 4
+
+[node name="Collision" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_uhbdq")
+
+[node name="Mesh" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_vp7as")
+
+[node name="Cube2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 121.1, 60.6386, 60.5834)
+collision_layer = 4
+collision_mask = 7
+
+[node name="Collision" type="CollisionShape3D" parent="Cube2"]
+shape = SubResource("BoxShape3D_ktquf")
+
+[node name="Smoothing" type="Node3D" parent="Cube2"]
+script = ExtResource("3_yvrd5")
+
+[node name="Mesh" type="MeshInstance3D" parent="Cube2/Smoothing"]
+mesh = SubResource("BoxMesh_eb2f5")
+skeleton = NodePath("../..")
+
+[node name="Cube" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 123.907, 82.4927, 41.3813)
+collision_layer = 4
+collision_mask = 7
+
+[node name="Collision" type="CollisionShape3D" parent="Cube"]
+shape = SubResource("BoxShape3D_ktquf")
+
+[node name="Smoothing" type="Node3D" parent="Cube"]
+script = ExtResource("3_yvrd5")
+
+[node name="Mesh" type="MeshInstance3D" parent="Cube/Smoothing"]
+mesh = SubResource("BoxMesh_eb2f5")
+skeleton = NodePath("../..")
+
+[node name="Player" parent="." instance=ExtResource("2_xteyq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 271.982, 157.698, 35.2886)

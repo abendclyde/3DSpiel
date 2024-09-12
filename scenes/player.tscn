@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvl37wkplf4v4"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_6p7vm"]
+[ext_resource type="Script" path="res://addons/smoothing/smoothing.gd" id="2_mgk3r"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5gdpt"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_40kib"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.53533, 4.17703)
+collision_mask = 2
+script = ExtResource("1_6p7vm")
+camera = NodePath("Smoothing/Camera")
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_5gdpt")
+
+[node name="Smoothing" type="Node3D" parent="."]
+script = ExtResource("2_mgk3r")
+
+[node name="Mesh" type="MeshInstance3D" parent="Smoothing"]
+cast_shadow = 0
+gi_mode = 0
+mesh = SubResource("CapsuleMesh_40kib")
+skeleton = NodePath("../..")
+
+[node name="Camera" type="Camera3D" parent="Smoothing"]
+transform = Transform3D(1, 0, 0, 0, 0.89216, 0.451719, 0, -0.451719, 0.89216, 0, 1.08021, -0.550891)
