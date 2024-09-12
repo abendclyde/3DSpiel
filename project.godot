@@ -14,7 +14,8 @@ config/name="3DSpiel"
 run/main_scene="res://scenes/bumsdings.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 run/max_fps=200
-config/icon="res://icon.svg"
+config/icon="res://assets/icons/cat.png"
+config/windows_native_icon="res://assets/icons/cat.ico"
 
 [autoload]
 
