@@ -3,6 +3,7 @@ class_name Player
 extends CharacterBody3D
 
 @export var camera: Camera3D
+@export var raycast: RayCast3D
 
 const SPEED: float = 50
 const JUMP_VELOCITY: float = 4.5
@@ -39,6 +40,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	rotate_player()
+	mouse_listener()
 
 func _input(event: InputEvent) -> void:
 	if Engine.is_editor_hint():
@@ -61,3 +63,8 @@ func rotate_player() -> void:
 
 func rotate_camera() -> void:
 	camera.quaternion = Quaternion(Vector3.RIGHT, rotation_target_head)
+
+func mouse_listener() -> void:
+	var collider = raycast.get_collider() as Node
+	if collider and collider is Node:
+		collider.get_parent().queue_free()
