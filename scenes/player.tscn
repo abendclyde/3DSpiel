@@ -8,14 +8,13 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_40kib"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "raycast")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.53533, 4.17703)
 collision_mask = 2
 script = ExtResource("1_6p7vm")
 camera = NodePath("Smoothing/Camera")
 raycast = NodePath("RayCast3D")
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.76837e-07, 0.523827, -0.520181)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.5)
 target_position = Vector3(0, 0, -1)
 collision_mask = 8
 debug_shape_custom_color = Color(2.40654e-06, 0.933546, 0.643521, 1)

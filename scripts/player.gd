@@ -65,6 +65,7 @@ func rotate_camera() -> void:
 	camera.quaternion = Quaternion(Vector3.RIGHT, rotation_target_head)
 
 func mouse_listener() -> void:
-	var collider = raycast.get_collider() as Node
-	if collider and collider is Node:
-		collider.get_parent().queue_free()
+	var collider = raycast.get_collider()
+	if collider and collider is Treee:
+		var tree = collider as Treee
+		tree.destroy()

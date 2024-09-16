@@ -19,9 +19,9 @@ config/windows_native_icon="res://assets/icons/cat.ico"
 
 [autoload]
 
-SteamAPI="*res://scripts/steam.gd"
+SteamAPI="*res://scripts/global/steam.gd"
 DiscordRPCLoader="*res://addons/discord-rpc-gd/nodes/discord_autoload.gd"
-Discord="*res://scripts/discord.gd"
+Discord="*res://scripts/global/discord.gd"
 
 [debug]
 

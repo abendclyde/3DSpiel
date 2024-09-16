@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bvl37wkplf4v4" path="res://scenes/player.tscn" id="2_xteyq"]
 [ext_resource type="Script" path="res://addons/smoothing/smoothing.gd" id="3_yvrd5"]
-[ext_resource type="PackedScene" uid="uid://dulshph8m8q5p" path="res://assets/tree.glb" id="4_jlfcw"]
+[ext_resource type="PackedScene" uid="uid://b4imnac8qw2su" path="res://scenes/tree.tscn" id="4_f1dpc"]
 [ext_resource type="PackedScene" uid="uid://bhousgifvuyt5" path="res://assets/axe.glb" id="5_r7q4j"]
-[ext_resource type="Terrain3DStorage" uid="uid://behg6stjyotl3" path="res://terrain3dtypeshit.res" id="9_8oio2"]
+[ext_resource type="Terrain3DStorage" uid="uid://cthcegy3qotcj" path="res://terrain3dtypeshit.res" id="9_8oio2"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vjxys"]
 
@@ -128,8 +128,8 @@ collision_mask = 7
 mesh_lods = 10
 mesh_size = 64
 
-[node name="tree" parent="." instance=ExtResource("4_jlfcw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.8315, -0.282636, -482.561)
+[node name="Tree" parent="." instance=ExtResource("4_f1dpc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26, -463)
 
-[node name="axe" parent="." instance=ExtResource("5_r7q4j")]
+[node name="Axe" parent="." instance=ExtResource("5_r7q4j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.5983, 3.25829, -464.578)

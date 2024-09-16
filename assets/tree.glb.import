@@ -36,7 +36,8 @@ _subresources={
 "PATH:Icosphere_001": {
 "generate/physics": true,
 "physics/layer": 8,
-"physics/mask": 15
+"physics/mask": 15,
+"primitive/size": Vector3(5, 5, 5)
 }
 }
 }
